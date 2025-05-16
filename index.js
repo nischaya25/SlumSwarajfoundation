@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
-import fs from 'fs';
+import controller from './controller.js';
 
 const app = express();
 
@@ -25,25 +25,13 @@ mongoose.connect(process.env.DATA_BASE, {
     console.error(' MongoDB connection error:', error);
   });
 
-// const authRoutes = require('./routes/authRoutes');
-// const userRoutes = require('./routes/userRoutes');
-
-
-// app.use('/auth', authRoutes);
-// app.use('/user', userRoutes);
+app.use('/api', controller);
 
 
 app.get('/', (req, res) => {
-  const stream = fs.createReadStream("./static.txt", "utf-8");
-  stream.on("data", (chunk) => {
-    res.write(chunk);
-  });
-  stream.on("end", () => {
-    res.end();
-    console.log("File reading completed.");
-  });
+  res.send('Server is running!');
 });
-// console.log("hebhbhiub");
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
