@@ -18,13 +18,16 @@ const userSchema = new mongoose.Schema({
       'Please fill a valid email address',
     ],
   },
-  description: {
-    type: String,
-    required: [true, 'Description is required'],
-    minlength: [10, 'Description must be at least 10 characters long'],
-    maxlength: [500, 'Description must be at most 500 characters long'],
-    trim: true,
-  },
-});
+    description: {
+      type: String,
+      required: [true, 'Description is required'],
+      minlength: [10, 'Description must be at least 10 characters long'],
+      maxlength: [500, 'Description must be at most 500 characters long'],
+      trim: true,
+    }
+  }, {
+    timestamps: true,
+  }
+);
 
 export const User = mongoose.model('User', userSchema);

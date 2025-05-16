@@ -3,9 +3,8 @@ import express from 'express';
 const router = express.Router();
 
 
-const register = async (req, res) => {
-
 router.post('/create', async (req, res) => {
+
     const { name, email, description } = req.body;
     
     try {
@@ -19,5 +18,5 @@ router.post('/create', async (req, res) => {
         res.status(500).json({ message: 'Error creating user', error });
     }
 
-})}
-export default register;
+})
+export default router;
